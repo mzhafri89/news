@@ -16,7 +16,7 @@ function NewsStandFeeds({navigation}) {
   );
 
   useEffect(() => {
-    //dispatch(fetchNews());
+    dispatch(fetchNews());
   }, [dispatch]);
 
   return (
