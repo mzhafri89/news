@@ -1,12 +1,12 @@
 import React, {useEffect, useCallback} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {fetchTrendingNews} from '../store/reducers/news';
+import {fetchTrendingNews} from '../store/reducers/trendingNews';
 import Feeds from 'screens/Feeds';
 
 function TrendingFeeds({navigation}) {
   const dispatch = useDispatch();
-  const {trendingNews, loading} = useSelector(state => state.news);
+  const {trendingNews, loading} = useSelector(state => state.trendingNews);
 
   const navigateToFeedDetailsScreen = useCallback(
     feedDetail => {
