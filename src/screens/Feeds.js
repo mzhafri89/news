@@ -1,5 +1,11 @@
 import React, {useEffect, useCallback, useState} from 'react';
-import {View, StyleSheet, FlatList, ActivityIndicator} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  ActivityIndicator,
+  TouchableOpacity,
+} from 'react-native';
 import {Card, Colors} from 'react-native-ui-lib';
 
 async function getFeedDetails(id) {
@@ -20,6 +26,11 @@ function FeedsCard({item, onPress}) {
   const [feedDetail, setFeedDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  const handleCardPress = useCallback(
+    () => onPress(feedDetail),
+    [feedDetail, onPress],
+  );
+
   useEffect(() => {
     async function loadDetails(id) {
       const request = await getFeedDetails(id);
@@ -32,35 +43,34 @@ function FeedsCard({item, onPress}) {
   }, [item]);
 
   return (
-    <Card
-      key={item}
-      row
-      height={160}
-      style={styles.card}
-      onPress={onPress}
-      useNative
-      backgroundColor={Colors.white}
-      activeOpacity={1}
-      activeScale={0.96}>
-      {isLoading ? (
-        <View style={styles.cardLoader}>
-          <ActivityIndicator />
-        </View>
-      ) : (
-        <Card.Section
-          content={[
-            {text: `by ${feedDetail?.by ?? ''}`, text70: true, grey10: true},
-            {
-              text: feedDetail?.title ?? '',
-              text80: true,
-              grey10: true,
-            },
-            {text: feedDetail?.url ?? '', text90: true, grey50: true},
-          ]}
-          style={styles.cardSection}
-        />
-      )}
-    </Card>
+    <TouchableOpacity onPress={handleCardPress}>
+      <Card
+        key={item}
+        row
+        height={160}
+        style={styles.card}
+        useNative
+        backgroundColor={Colors.white}>
+        {isLoading ? (
+          <View style={styles.cardLoader}>
+            <ActivityIndicator />
+          </View>
+        ) : (
+          <Card.Section
+            content={[
+              {text: `by ${feedDetail?.by ?? ''}`, text70: true, grey10: true},
+              {
+                text: feedDetail?.title ?? '',
+                text80: true,
+                grey10: true,
+              },
+              {text: feedDetail?.url ?? '', text90: true, grey50: true},
+            ]}
+            style={styles.cardSection}
+          />
+        )}
+      </Card>
+    </TouchableOpacity>
   );
 }
 

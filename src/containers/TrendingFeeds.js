@@ -9,7 +9,9 @@ function TrendingFeeds({navigation}) {
   const {trendingNews, loading} = useSelector(state => state.news);
 
   const navigateToFeedDetailsScreen = useCallback(
-    () => navigation.navigate('Details', {}),
+    feedDetail => {
+      navigation.navigate('TrendingNews', {feedDetail});
+    },
     [navigation],
   );
 

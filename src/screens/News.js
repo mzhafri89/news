@@ -1,8 +1,13 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
+import {WebView} from 'react-native-webview';
 
-function News() {
-  return <View style={styles.container}></View>;
+function News({uri}) {
+  return (
+    <View style={styles.container}>
+      <WebView source={{uri}} />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({

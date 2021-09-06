@@ -2,10 +2,10 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import News from 'screens/News';
 
-function TrendingNews() {
+function TrendingNews({route}) {
   return (
     <View style={styles.container}>
-      <News />
+      <News uri={route.params.feedDetail.url} />
     </View>
   );
 }
