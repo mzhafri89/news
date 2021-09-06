@@ -1,11 +1,31 @@
-import React from 'react';
+import React, {useEffect, useCallback} from 'react';
 import {View, StyleSheet} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
+import {fetchNews} from '../store/reducers/news';
 import Feeds from 'screens/Feeds';
 
-function NewsStandFeeds() {
+function NewsStandFeeds({navigation}) {
+  const dispatch = useDispatch();
+  const {news, loading} = useSelector(state => state.news);
+
+  const navigateToFeedDetailsScreen = useCallback(
+    feedDetail => {
+      navigation.navigate('TrendingNews', {feedDetail});
+    },
+    [navigation],
+  );
+
+  useEffect(() => {
+    //dispatch(fetchNews());
+  }, [dispatch]);
+
   return (
     <View style={styles.container}>
-      <Feeds />
+      <Feeds
+        items={news}
+        isLoading={loading}
+        onPress={navigateToFeedDetailsScreen}
+      />
     </View>
   );
 }
