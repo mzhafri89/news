@@ -11,6 +11,8 @@ module.exports = {
           navigation: './src/navigation',
           screens: './src/screens',
           containers: './src/containers',
+          slices: './src/store/reducers',
+          store: './src/store',
         },
       },
     ],
