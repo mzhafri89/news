@@ -1,21 +1,18 @@
-import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import React, {useCallback} from 'react';
 import News from 'screens/News';
 
-function TrendingNews({route}) {
+function TrendingNews({route, navigation}) {
+  const navigateBackToFeedsScreen = useCallback(
+    () => navigation.navigate('TrendingFeeds'),
+    [navigation],
+  );
+
   return (
-    <View style={styles.container}>
-      <News uri={route.params.feedDetail.url} />
-    </View>
+    <News
+      uri={route.params.feedDetail.url}
+      navigateBack={navigateBackToFeedsScreen}
+    />
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default TrendingNews;

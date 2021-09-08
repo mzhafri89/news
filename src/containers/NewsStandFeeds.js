@@ -10,7 +10,7 @@ function NewsStandFeeds({navigation}) {
 
   const navigateToFeedDetailsScreen = useCallback(
     feedDetail => {
-      navigation.navigate('TrendingNews', {feedDetail});
+      navigation.navigate('NewsStandNews', {feedDetail});
     },
     [navigation],
   );
