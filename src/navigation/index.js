@@ -3,6 +3,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import TrendingStack from 'navigation/stacks/trending';
 import NewsStandStack from 'navigation/stacks/newsStand';
+import CardsStack from 'navigation/stacks/cards';
 
 const Tab = createBottomTabNavigator();
 
@@ -17,7 +18,7 @@ export default function Root() {
             iconName = 'trending-up';
           } else if (route.name === 'NewsStandStack') {
             iconName = 'logo-hackernews';
-          }
+          } else if (route.name === 'CardsStack') iconName = 'card';
 
           // You can return any component that you like here!
           return <Ionicons name={iconName} size={size} color={color} />;
@@ -39,6 +40,13 @@ export default function Root() {
         component={NewsStandStack}
         options={{
           title: 'News Stand',
+        }}
+      />
+      <Tab.Screen
+        name="CardsStack"
+        component={CardsStack}
+        options={{
+          title: 'Cards',
         }}
       />
     </Tab.Navigator>
